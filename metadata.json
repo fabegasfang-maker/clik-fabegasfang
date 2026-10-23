@@ -1,0 +1,6 @@
+{
+  "name": "Coffee Grinder Click Log - Mischief M40 & LEnodi",
+  "description": "บันทึกและเปรียบเทียบระดับการบด (Clicks Dial) สำหรับเครื่องบด Mischief M40 และ LEnodi พร้อมสูตรชงและตารางอ้างอิง",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

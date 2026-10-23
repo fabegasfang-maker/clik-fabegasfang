@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "GrinderSettings": {
+      "title": "GrinderSettings",
+      "description": "Current click settings and active grinder state for cross-device sync",
+      "type": "object",
+      "properties": {
+        "mischiefClicks": {
+          "type": "number",
+          "description": "Current clicks on Mischief M40"
+        },
+        "lenodiClicks": {
+          "type": "number",
+          "description": "Current clicks on LEnodi"
+        },
+        "activeGrinderId": {
+          "type": "string",
+          "description": "Last active grinder identifier",
+          "enum": ["mischief-m40", "lenodi"]
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp of last change"
+        }
+      },
+      "required": ["mischiefClicks", "lenodiClicks", "activeGrinderId"]
+    },
+    "BrewLog": {
+      "title": "BrewLog",
+      "description": "Coffee brewing recipe record with grinder click and taste notes",
+      "type": "object",
+      "properties": {
+        "grinderId": {
+          "type": "string",
+          "enum": ["mischief-m40", "lenodi"]
+        },
+        "clicks": {
+          "type": "number"
+        },
+        "beanName": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "origin": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "roastLevel": {
+          "type": "string",
+          "enum": ["light", "medium-light", "medium", "medium-dark", "dark"]
+        },
+        "process": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "roastDate": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "method": {
+          "type": "string",
+          "enum": ["espresso", "moka", "aeropress", "v60", "origami", "kalita", "french-press", "cold-brew"]
+        },
+        "dripper": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "doseGrams": {
+          "type": "number"
+        },
+        "waterGrams": {
+          "type": "number"
+        },
+        "ratio": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "waterTempC": {
+          "type": "number"
+        },
+        "brewTimeSeconds": {
+          "type": "number"
+        },
+        "rating": {
+          "type": "number"
+        },
+        "flavorNotes": {
+          "type": "array"
+        },
+        "extractionVerdict": {
+          "type": "string",
+          "enum": ["under", "balanced", "over"]
+        },
+        "tasteNotes": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "isFavorite": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 50
+        }
+      },
+      "required": ["grinderId", "clicks", "beanName", "method", "doseGrams", "waterGrams", "extractionVerdict"]
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": "GrinderSettings",
+      "description": "Global or user grinder click settings"
+    },
+    "/brew_logs/{logId}": {
+      "schema": "BrewLog",
+      "description": "Collection of coffee brewing logs"
+    }
+  }
+}

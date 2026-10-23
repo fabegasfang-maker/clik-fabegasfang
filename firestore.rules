@@ -1,0 +1,68 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety net: default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Validation for GrinderSettings
+    function isValidGrinderSettings(data) {
+      return data.keys().hasAll(['mischiefClicks', 'lenodiClicks', 'activeGrinderId']) &&
+        data.mischiefClicks is number &&
+        data.mischiefClicks >= 0 &&
+        data.mischiefClicks <= 100 &&
+        data.lenodiClicks is number &&
+        data.lenodiClicks >= 0 &&
+        data.lenodiClicks <= 100 &&
+        (data.activeGrinderId == 'mischief-m40' || data.activeGrinderId == 'lenodi');
+    }
+
+    // Validation for BrewLog
+    function isValidBrewLog(data) {
+      return data.keys().hasAll(['grinderId', 'clicks', 'beanName', 'method', 'doseGrams', 'waterGrams', 'extractionVerdict']) &&
+        (data.grinderId == 'mischief-m40' || data.grinderId == 'lenodi') &&
+        data.clicks is number &&
+        data.clicks >= 0 &&
+        data.clicks <= 100 &&
+        data.beanName is string &&
+        data.beanName.size() > 0 &&
+        data.beanName.size() <= 200 &&
+        data.doseGrams is number &&
+        data.doseGrams > 0 &&
+        data.doseGrams <= 200 &&
+        data.waterGrams is number &&
+        data.waterGrams > 0 &&
+        data.waterGrams <= 2000 &&
+        (data.extractionVerdict == 'under' || data.extractionVerdict == 'balanced' || data.extractionVerdict == 'over');
+    }
+
+    // Settings collection for cross-device dial settings sync
+    match /settings/{settingId} {
+      allow read: if isValidId(settingId);
+      allow create, update: if isValidId(settingId) && isValidGrinderSettings(incoming());
+      allow delete: if false;
+    }
+
+    // Brew logs collection
+    match /brew_logs/{logId} {
+      allow read: if isValidId(logId);
+      allow create: if isValidId(logId) && isValidBrewLog(incoming());
+      allow update: if isValidId(logId) && isValidBrewLog(incoming());
+      allow delete: if isValidId(logId);
+    }
+  }
+}
