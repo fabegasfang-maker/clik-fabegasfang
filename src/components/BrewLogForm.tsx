@@ -165,7 +165,7 @@ export const BrewLogForm: React.FC<BrewLogFormProps> = ({
                 }`}
               >
                 <div className="text-xs font-bold text-stone-900">Mischief M40</div>
-                <div className="text-[11px] text-stone-500">~30 µm/คลิก (0-45 คลิก)</div>
+                <div className="text-[11px] text-stone-500">~15.2 µm/คลิก (0-90 คลิก)</div>
               </button>
 
               <button
@@ -312,7 +312,8 @@ export const BrewLogForm: React.FC<BrewLogFormProps> = ({
                   <option value="origami">Origami / Kalita (Flat Bed)</option>
                   <option value="aeropress">AeroPress</option>
                   <option value="espresso">Espresso / Flair 58</option>
-                  <option value="moka">Moka Pot</option>
+                  <option value="moka">Moka Pot (Bialetti)</option>
+                  <option value="cezve">Cezve / ต้มตุรกี (Ibrik)</option>
                   <option value="french-press">French Press</option>
                   <option value="cold-brew">Cold Brew</option>
                 </select>

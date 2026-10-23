@@ -39,6 +39,7 @@ export const BrewLogCard: React.FC<BrewLogCardProps> = ({
   };
 
   const methodLabels: Record<string, string> = {
+    'cezve': 'Cezve / ต้มตุรกี',
     'v60': 'V60 Pour Over',
     'espresso': 'Espresso',
     'moka': 'Moka Pot',

@@ -3,6 +3,7 @@ export type GrinderId = 'mischief-m40' | 'lenodi';
 export type RoastLevel = 'light' | 'medium-light' | 'medium' | 'medium-dark' | 'dark';
 
 export type BrewMethod =
+  | 'cezve'
   | 'espresso'
   | 'moka'
   | 'aeropress'

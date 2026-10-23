@@ -35,7 +35,7 @@ export const GrinderComparison: React.FC<GrinderComparisonProps> = ({ onApplyCli
             เครื่องคิดเลขเทียบเบอร์บด M40 ⇄ LEnodi
           </h2>
           <p className="text-sm text-stone-600 mt-2 leading-relaxed">
-            Mischief M40 มีระยะเกลียวประมาณ ~30 µm ต่อคลิก ขณะที่ LEnodi มีสเต็ปที่ถี่กว่าประมาณ ~22 µm ต่อคลิก
+            Mischief M40 มีระยะเกลียวปรับละเอียดระดับ Red Clix ประมาณ ~15.2 µm ต่อคลิก (สเกลคลิกละเอียด 2 เท่าของ C40 มาตรฐาน) ขณะที่ LEnodi มีสเต็ปอยู่ที่ประมาณ ~22 µm ต่อคลิก
             เครื่องมือนี้ช่วยคำนวณเบอร์บดเทียบเคียง เพื่อให้คุณย้ายสูตรกาแฟระหว่าง 2 เครื่องได้อย่างแม่นยำ ไม่ต้องเสียเวลานับคลิกเดาสุ่ม
           </p>
         </div>
@@ -194,7 +194,7 @@ export const GrinderComparison: React.FC<GrinderComparisonProps> = ({ onApplyCli
           </p>
           <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
             <span>ระยะการก้าวต่อคลิก</span>
-            <span className="font-mono font-semibold text-stone-900">~30 µm (ไมครอน)</span>
+            <span className="font-mono font-semibold text-stone-900">~15.2 µm (2x C40 / Red Clix)</span>
           </div>
         </div>
 
